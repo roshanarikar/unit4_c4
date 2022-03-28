@@ -22,4 +22,18 @@ router.post("",async (req,res) =>{
 });
 
 
+router.get("",async (req,res) =>{
+    try {
+
+
+        const user = await Todo.find().lean().exec();
+    
+
+        return res.status(201).send(user)
+
+    } catch (error) {
+        return res.status(500).send({message:error.message})
+    }
+});
+
 module.exports = router;
