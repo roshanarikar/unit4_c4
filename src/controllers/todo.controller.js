@@ -42,7 +42,7 @@ router.get("",async (req,res) =>{
         });
 
     } catch (error) {
-        return res.status(500).send({message:error.message})
+        return res.status(401).send({message:error.message})
     }
 });
 
@@ -61,13 +61,13 @@ router.get("/:id",async (req,res) =>{
 
                     return res.status(200).send({todos,redis:false})
                 } catch (error) {
-                    return res.status(500).send({message:error.message})
+                    return res.status(401).send({message:error.message})
                 }
             }
         });
 
     } catch (error) {
-        return res.status(500).send({message:error.message})
+        return res.status(401).send({message:error.message})
     }
 });
 
@@ -85,7 +85,7 @@ router.patch("/:id",async (req,res)=>{
 
         return res.status(200).send(todo)
     } catch (error) {
-        return res.status(500).send({message:error.message})
+        return res.status(401).send({message:error.message})
     }
 });
 
@@ -101,7 +101,7 @@ router.delete("/:id",async (req,res)=>{
 
         return res.status(200).send(todo)
     } catch (error) {
-        return res.status(500).send({message:error.message})
+        return res.status(401).send({message:error.message})
     }
 });
 
