@@ -87,4 +87,22 @@ router.patch("/:id",async (req,res)=>{
     } catch (error) {
         return res.status(500).send({message:error.message})
     }
-})
+});
+
+router.delete("/:id",async (req,res)=>{
+    try {
+        const todo = await Todo.findByIdAndDelete(req.params.id).lean().exec();
+
+        const todos = await Todo.find().lean().exec();
+                    
+        client.del(`todos.${req.params.id}`);
+
+        client.set("todos",JSON.stringify(todos));
+
+        return res.status(200).send(todo)
+    } catch (error) {
+        return res.status(500).send({message:error.message})
+    }
+});
+
+module.exports = router;
